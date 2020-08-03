@@ -51,7 +51,7 @@ def send_mail():
 def SimulateClick(url):    
     options = webdriver.FirefoxOptions()
     options.add_argument('--headless')
-    dr = webdriver.Firefox(options=options)     
+    dr = webdriver.Firefox('./', options=options)
     dr.get(url)
     dr.find_element_by_id('password_name').send_keys('lizhan')
     dr.find_element_by_id('password_pwd').send_keys('080416')
