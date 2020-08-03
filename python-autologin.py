@@ -22,17 +22,18 @@ def page_login(url):
     else:
         print('链接成功')
 
+
 def send_mail():
     # 第三方 SMTP 服务
-    mail_host = "mail.cstnet.cn"  #设置服务器
-    mail_user = "zhanli@siom.ac.cn"  #用户名
-    mail_pass = "Lz406699313"  #口令
+    mail_host = "mail.cstnet.cn"  # 设置服务器
+    mail_user = "zhanli@siom.ac.cn"  # 用户名
+    mail_pass = "Lz406699313"  # 口令
 
     sender = 'zhanli@siom.ac.cn'
     receivers = ['lizzzzz@mail.ustc.edu.cn']  # 接收邮箱
 
     message = MIMEText('MSI网络已经重新链接', 'plain', 'utf-8')
-    message['From'] = Header("MSI", 'utf-8')
+    message['From'] = Header("306", 'utf-8')
     message['To'] = Header("李展", 'utf-8')
 
     subject = '自动运行报告'
@@ -48,17 +49,18 @@ def send_mail():
     except smtplib.SMTPException:
         print("Error: 无法发送邮件")
 
-def SimulateClick(url):    
+
+def SimulateClick(url):
     options = webdriver.FirefoxOptions()
     options.add_argument('--headless')
-    dr = webdriver.Firefox(options=options)     
+    dr = webdriver.Firefox(r'./', options=options)
     dr.get(url)
     dr.find_element_by_id('password_name').send_keys('lizhan')
     dr.find_element_by_id('password_pwd').send_keys('080416')
     dr.find_element_by_name('btlogin').click()
     time.sleep(1)
     ResponseUrl = dr.current_url
-    if ResponseUrl.find('ac_portal/default')>0:
+    if ResponseUrl.find('ac_portal/default') > 0:
         print('Login Success')
     else:
         print('Login Num is limted')
@@ -69,6 +71,5 @@ def SimulateClick(url):
 
 
 url = 'http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd'
-
 ResponseUrl = SimulateClick(url)
-# send_mail()
+send_mail()
