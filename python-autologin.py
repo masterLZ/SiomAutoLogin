@@ -51,20 +51,24 @@ def send_mail():
 def SimulateClick(url):    
     options = webdriver.FirefoxOptions()
     options.add_argument('--headless')
-    dr = webdriver.Firefox()     
+    dr = webdriver.Firefox(options=options)     
     dr.get(url)
     dr.find_element_by_id('password_name').send_keys('lizhan')
     dr.find_element_by_id('password_pwd').send_keys('080416')
     dr.find_element_by_name('btlogin').click()
-    time.sleep(2)
-    print(dr.current_url)
+    time.sleep(1)
     ResponseUrl = dr.current_url
+    if ResponseUrl.find('ac_portal/default')>0:
+        print('Login Success')
+    else:
+        print('Login Num is limted')
     dr.quit()
     return ResponseUrl
-    # http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd&pop=0&type=logout&username=
-    #http://1.1.1.2/expire_term_default/expire_term.htm?url=http://1.1.1.2/ac_portal/proxy.html?type=logout&tabs=pwd
+    #  直接登录http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd&pop=0&type=logout&username=
+    #  登录数量过多http://1.1.1.2/expire_term_default/expire_term.htm?url=http://1.1.1.2/ac_portal/proxy.html?type=logout&tabs=pwd
 
 
 url = 'http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd'
-u1 = SimulateClick(url)
-send_mail()
+
+ResponseUrl = SimulateClick(url)
+# send_mail()
