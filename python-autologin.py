@@ -65,12 +65,10 @@ def SimulateClick(url):
     else:
         print('Login Num is limted')
     dr.quit()
-    return ResponseUrl
     #  直接登录http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd&pop=0&type=logout&username=
     #  登录数量过多http://1.1.1.2/expire_term_default/expire_term.htm?url=http://1.1.1.2/ac_portal/proxy.html?type=logout&tabs=pwd
 
 
 url = 'http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd'
-
-ResponseUrl = SimulateClick(url)
+SimulateClick(url)
 # send_mail()
