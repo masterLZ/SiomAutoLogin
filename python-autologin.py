@@ -1,9 +1,9 @@
-import requests
 import smtplib
-from email.mime.text import MIMEText
-from email.header import Header
-
 import time
+from email.header import Header
+from email.mime.text import MIMEText
+
+import requests
 from selenium import webdriver
 
 
@@ -21,6 +21,7 @@ def page_login(url):
         print('链接失败')
     else:
         print('链接成功')
+
 
 def send_mail():
     # 第三方 SMTP 服务
@@ -48,17 +49,18 @@ def send_mail():
     except smtplib.SMTPException:
         print("Error: 无法发送邮件")
 
-def SimulateClick(url):    
+
+def SimulateClick(url):
     options = webdriver.FirefoxOptions()
     options.add_argument('--headless')
-    dr = webdriver.Firefox(options=options)     
+    dr = webdriver.Firefox('./', options=options)
     dr.get(url)
     dr.find_element_by_id('password_name').send_keys('lizhan')
     dr.find_element_by_id('password_pwd').send_keys('080416')
     dr.find_element_by_name('btlogin').click()
     time.sleep(1)
     ResponseUrl = dr.current_url
-    if ResponseUrl.find('ac_portal/default')>0:
+    if ResponseUrl.find('ac_portal/default') > 0:
         print('Login Success')
     else:
         print('Login Num is limted')
