@@ -56,12 +56,6 @@ def send_mail():
         print("Error: 无法发送邮件")
 
 
-<<<<<<< HEAD:python-autologin.py
-def SimulateClick(url):
-    options = webdriver.FirefoxOptions()
-    options.add_argument('--headless')
-    dr = webdriver.Firefox(r'./', options=options)
-=======
 def SimulateClick(isFirst=1, driver=None):
     url = 'http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd'
     # options = webdriver.FirefoxOptions()
@@ -69,7 +63,6 @@ def SimulateClick(isFirst=1, driver=None):
     dr = driver
     if (isFirst):
         dr = webdriver.Firefox('./')
->>>>>>> f6d1f50e7cda98be18f13cf6b74ff899493c229f:python_autologin.py
     dr.get(url)
     dr.implicitly_wait(30)
     dr.find_element_by_id('password_name').send_keys('lizhan')
@@ -107,12 +100,6 @@ def SimulateClick(isFirst=1, driver=None):
     #  登录数量过多http://1.1.1.2/expire_term_default/expire_term.htm?url=http://1.1.1.2/ac_portal/proxy.html?type=logout&tabs=pwd
 
 
-<<<<<<< HEAD:python-autologin.py
-url = 'http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd'
-ResponseUrl = SimulateClick(url)
-send_mail()
-=======
 if __name__ == '__main__':
     SimulateClick()
     #page_login()
->>>>>>> f6d1f50e7cda98be18f13cf6b74ff899493c229f:python_autologin.py
