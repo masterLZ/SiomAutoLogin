@@ -31,15 +31,15 @@ def page_login():
 
 def send_mail():
     # 第三方 SMTP 服务
-    mail_host = "mail.cstnet.cn"  #设置服务器
-    mail_user = "zhanli@siom.ac.cn"  #用户名
-    mail_pass = "Lz406699313"  #口令
+    mail_host = "mail.cstnet.cn"  # 设置服务器
+    mail_user = "zhanli@siom.ac.cn"  # 用户名
+    mail_pass = "Lz406699313"  # 口令
 
     sender = 'zhanli@siom.ac.cn'
     receivers = ['lizzzzz@mail.ustc.edu.cn']  # 接收邮箱
 
     message = MIMEText('MSI网络已经重新链接', 'plain', 'utf-8')
-    message['From'] = Header("MSI", 'utf-8')
+    message['From'] = Header("306", 'utf-8')
     message['To'] = Header("李展", 'utf-8')
 
     subject = '自动运行报告'
@@ -100,6 +100,7 @@ def SimulateClick(isFirst=1, driver=None):
     #  登录数量过多http://1.1.1.2/expire_term_default/expire_term.htm?url=http://1.1.1.2/ac_portal/proxy.html?type=logout&tabs=pwd
 
 
+
 if __name__ == '__main__':
     SimulateClick()
-    #page_login()
+
