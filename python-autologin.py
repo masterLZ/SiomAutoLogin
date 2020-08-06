@@ -31,8 +31,8 @@ def send_mail():
     sender = 'zhanli@siom.ac.cn'
     receivers = ['lizzzzz@mail.ustc.edu.cn']  # 接收邮箱
 
-    message = MIMEText('MSI网络已经重新链接', 'plain', 'utf-8')
-    message['From'] = Header("MSI", 'utf-8')
+    message = MIMEText('306已连接', 'plain', 'utf-8')
+    message['From'] = Header("306", 'utf-8')
     message['To'] = Header("李展", 'utf-8')
 
     subject = '自动运行报告'
@@ -58,10 +58,11 @@ def SimulateClick(url):
     dr.find_element_by_name('btlogin').click()
     time.sleep(1)
     ResponseUrl = dr.current_url
-    if ResponseUrl.find('ac_portal/default')>0:
+    if ResponseUrl.find('ac_portal/default') > 0:
         print('Login Success')
     else:
         print('Login Num is limted')
+        
     dr.quit()
     return ResponseUrl
     #  直接登录http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd&pop=0&type=logout&username=
@@ -71,4 +72,4 @@ def SimulateClick(url):
 url = 'http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd'
 
 ResponseUrl = SimulateClick(url)
-# send_mail()
+send_mail()
