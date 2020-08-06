@@ -93,13 +93,20 @@ def SimulateClick(isFirst=1, driver=None):
         dr.find_element_by_xpath(XpathDelte).click()
         # 删除后重新调用登录
         print('重新登录')
-        dr.switch_to_alert().accept()  #接受弹窗
+        dr.switch_to.alert.accept()  #接受弹窗
         SimulateClick(0, dr)
     dr.quit()
     #  直接登录http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd&pop=0&type=logout&username=
     #  登录数量过多http://1.1.1.2/expire_term_default/expire_term.htm?url=http://1.1.1.2/ac_portal/proxy.html?type=logout&tabs=pwd
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     SimulateClick()
     #page_login()
+=======
+
+if __name__ == '__main__':
+    SimulateClick()
+
+>>>>>>> c2a8d77f6b08fd3108230fdc30e8d53a20766ce3
