@@ -1,14 +1,42 @@
 # SiomAutoLogin
 所网自动登录
 
-写这个主要原因是所网每天4点自动切断，需要重新登录。
+登录方式有两种：网页直接发送请求和模拟浏览器操作
 
-之前的方法直接在http://1.1.1.2/ac_portal/login.php 中写入对应参数就可以
+# 网页直接发送请求
 
-但是自从更新后密码变成了动态加密，还没有找到对应的加密算法，所以暂时这种方案先搁置
+所网直接登录，直接向 http://1.1.1.2/ac_portal/login.php 发送请求
 
-目前所用方案是利用selenium直接模拟浏览器的键盘输入和点击
+目前请求包的内容是：{
+        "opr": "pwdLogin",
+        "userName": name,
+        "pwd": pwd,
+        "auth_tag": auth_tag,
+        "rememberPwd": "0"}
 
-方案问题在于driver要求浏览器版本，还需要把driver加入系统路径。库里面这个driver需要火狐浏览器2020年7月份之后的版本
+其中pwd 和 auth_tag 参数需要通过调用 rc4.js 对原本密码进行加密
+
+pwd是加密后的密码, auth_tag是获取的系统时间毫秒数
+
+该方法需要python库 requests, execjs
+
+方法较为快捷，但是不够灵活，适用于每天4点登录
+
+# 调用浏览器模拟输入
+
+通过selenium和浏览器对应版本的driver完成操作（Firefox 79.0+ geckodriver.exe）
+
+主要功能是如果模拟登录后已经有两个在线的地址，则判断IP地址是否有工作站IP，如果有则删除另外一个，如果没有则删除第一个地址，然后再重新登录
+
+该方法需要python库 selenium
+
+缺点是速度很慢，打开浏览器需要一定时间，适用于日常自主登录
+
+# 使用powershell登录
+
+利用powershell 调用 IE浏览器完成登录，这个方法适用于任何windows电脑
 
 # Log
+2020/8/3 修改检索路径
+
+2020/8/6 彻底解决登录问题
