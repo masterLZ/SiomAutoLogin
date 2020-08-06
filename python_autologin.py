@@ -93,7 +93,7 @@ def SimulateClick(isFirst=1, driver=None):
         dr.find_element_by_xpath(XpathDelte).click()
         # 删除后重新调用登录
         print('重新登录')
-        dr.switch_to_alert().accept()  #接受弹窗
+        dr.switch_to.alert.accept()  #接受弹窗
         SimulateClick(0, dr)
     dr.quit()
     #  直接登录http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd&pop=0&type=logout&username=
