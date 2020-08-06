@@ -38,7 +38,7 @@ def send_mail():
     sender = 'zhanli@siom.ac.cn'
     receivers = ['lizzzzz@mail.ustc.edu.cn']  # 接收邮箱
 
-    message = MIMEText('MSI网络已经重新链接', 'plain', 'utf-8')
+    message = MIMEText('306网络已经重新链接', 'plain', 'utf-8')
     message['From'] = Header("306", 'utf-8')
     message['To'] = Header("李展", 'utf-8')
 
@@ -77,18 +77,13 @@ def SimulateClick(isFirst=1, driver=None):
     else:
         print('Login Num is limted')
         #使用xpath筛选
-        ip_uint = [
-            dr.find_element_by_xpath('.//table/tbody/tr[3]/td[2]').text,
-            dr.find_element_by_xpath('.//table/tbody/tr[4]/td[2]').text
-        ]
-        try:
-            WorkstationIndex = ip_uint.index('172.16.43.50')
-            print('306工作站在线，将删除另一个用户')
-            DelteIndex = 1 - WorkstationIndex + 3
-            #第三个或者第四个tr
-        except ValueError:
-            DelteIndex = 3
-            print('删除第一个用户')
+        # ip_uint = [
+        #     dr.find_element_by_xpath('.//table/tbody/tr[3]/td[2]').text,
+        #     dr.find_element_by_xpath('.//table/tbody/tr[4]/td[2]').text
+        # ]
+
+        DelteIndex = 3
+        print('删除第一个用户')
         XpathDelte = ".//table/tbody/tr[%d]/td[7]" % (DelteIndex)
         dr.find_element_by_xpath(XpathDelte).click()
         # 删除后重新调用登录
@@ -100,13 +95,7 @@ def SimulateClick(isFirst=1, driver=None):
     #  登录数量过多http://1.1.1.2/expire_term_default/expire_term.htm?url=http://1.1.1.2/ac_portal/proxy.html?type=logout&tabs=pwd
 
 
-<<<<<<< HEAD
-if __name__ == '__main__':
-    SimulateClick()
-    #page_login()
-=======
 
 if __name__ == '__main__':
     SimulateClick()
 
->>>>>>> c2a8d77f6b08fd3108230fdc30e8d53a20766ce3
