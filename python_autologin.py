@@ -100,7 +100,13 @@ def SimulateClick(isFirst=1, driver=None):
     #  登录数量过多http://1.1.1.2/expire_term_default/expire_term.htm?url=http://1.1.1.2/ac_portal/proxy.html?type=logout&tabs=pwd
 
 
+<<<<<<< HEAD
+if __name__ == '__main__':
+    SimulateClick()
+    #page_login()
+=======
 
 if __name__ == '__main__':
     SimulateClick()
 
+>>>>>>> c2a8d77f6b08fd3108230fdc30e8d53a20766ce3
