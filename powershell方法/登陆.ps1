@@ -13,9 +13,9 @@ $ie.Navigate($url)
       sleep -Milliseconds 100
       $milliseconds+=100
     }
-$ie.document.getelementbyid("password_name").value="xxxx" #用户名
+$ie.document.getelementbyid("password_name").value="lizhan" #用户名
 Start-Sleep -m 500
-$ie.document.getelementbyid("password_pwd").value="xxxx"  #密码
+$ie.document.getelementbyid("password_pwd").value="080416"  #密码
 Start-Sleep -m 500
 $ie.document.getelementbyid("password_submitBtn").click()
 Start-Sleep -m 1000
