@@ -1,7 +1,4 @@
-import smtplib
 import time
-from email.header import Header
-from email.mime.text import MIMEText
 
 import requests
 from selenium import webdriver
@@ -29,33 +26,6 @@ def page_login():
         print('链接成功')
 
 
-def send_mail():
-    # 第三方 SMTP 服务
-    mail_host = "mail.cstnet.cn"  # 设置服务器
-    mail_user = "zhanli@siom.ac.cn"  # 用户名
-    mail_pass = "Lz406699313"  # 口令
-
-    sender = 'zhanli@siom.ac.cn'
-    receivers = ['lizzzzz@mail.ustc.edu.cn']  # 接收邮箱
-
-    message = MIMEText('MSI网络已经重新链接', 'plain', 'utf-8')
-    message['From'] = Header("306", 'utf-8')
-    message['To'] = Header("李展", 'utf-8')
-
-    subject = '自动运行报告'
-    message['Subject'] = Header(subject, 'utf-8')
-
-    try:
-        smtpObj = smtplib.SMTP()
-        smtpObj.connect(mail_host, '25')  # 25 为默认端口号
-        smtpObj.login(mail_user, mail_pass)
-        smtpObj.sendmail(sender, receivers, message.as_string())
-        print("邮件发送成功")
-
-    except smtplib.SMTPException:
-        print("Error: 无法发送邮件")
-
-
 def SimulateClick(isFirst=1, driver=None):
     url = 'http://1.1.1.2/ac_portal/default/pc.html?tabs=pwd'
     # options = webdriver.FirefoxOptions()
@@ -81,14 +51,9 @@ def SimulateClick(isFirst=1, driver=None):
             dr.find_element_by_xpath('.//table/tbody/tr[3]/td[2]').text,
             dr.find_element_by_xpath('.//table/tbody/tr[4]/td[2]').text
         ]
-        try:
-            WorkstationIndex = ip_uint.index('172.16.43.50')
-            print('306工作站在线，将删除另一个用户')
-            DelteIndex = 1 - WorkstationIndex + 3
-            #第三个或者第四个tr
-        except ValueError:
-            DelteIndex = 3
-            print('删除第一个用户')
+
+        DelteIndex = 3
+        print('删除第一个用户')
         XpathDelte = ".//table/tbody/tr[%d]/td[7]" % (DelteIndex)
         dr.find_element_by_xpath(XpathDelte).click()
         # 删除后重新调用登录
@@ -100,7 +65,5 @@ def SimulateClick(isFirst=1, driver=None):
     #  登录数量过多http://1.1.1.2/expire_term_default/expire_term.htm?url=http://1.1.1.2/ac_portal/proxy.html?type=logout&tabs=pwd
 
 
-
 if __name__ == '__main__':
     SimulateClick()
-
