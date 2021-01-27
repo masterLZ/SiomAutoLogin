@@ -25,7 +25,7 @@ def page_login():
     print(r.status_code)
     if r.status_code == 500:
         print('链接失败')
-    else 
+    else:
         print('链接成功')
 
 
@@ -58,7 +58,7 @@ def send_mail():
 
 
 def SimulateClick(isFirst=1, driver=None):
-    url = 'http://210.72.9.2/homepage/login.html'
+    url = 'http://210.72.9.2/'
     dr = driver
     if (isFirst):
         # dr = webdriver.Firefox('./')
@@ -66,37 +66,43 @@ def SimulateClick(isFirst=1, driver=None):
     time.sleep(1)
     dr.get(url)
     dr.implicitly_wait(30)
-    dr.find_element_by_id('username').send_keys('lizhan')
-    dr.find_element_by_id('pwd').send_keys('080416')
-    dr.find_element_by_class_name('to-login').click()
-    time.sleep(2)
     ResponseUrl = dr.current_url
-    if ResponseUrl.find('homepage/index.html?') > 0:
-            print('Login Success')
+    if ResponseUrl.find('index.html?_FLAG=1') >1:
+        print('Login Success')
     else:
-            print('Login Num is limted')
-            #使用xpath筛选
-            ip_uint = [
-                dr.find_element_by_xpath('.//table/tbody/tr[3]/td[2]').text,
-                dr.find_element_by_xpath('.//table/tbody/tr[4]/td[2]').text
-            ]
-            try:
-                WorkstationIndex = ip_uint.index('172.16.43.180')
-                print('306工作站在线，将删除另一个用户')
-                DelteIndex = 1 - WorkstationIndex + 3
-                #第三个或者第四个tr
-            except ValueError:
-                DelteIndex = 3
-                print('删除第一个用户')
-            XpathDelte = ".//table/tbody/tr[%d]/td[7]" % (DelteIndex)
-            dr.find_element_by_xpath(XpathDelte).click()
-            # 删除后重新调用登录
-            print('重新登录')
-            time.sleep(1)
-            dr.switch_to.alert.accept()  #接受弹窗
-            SimulateClick(0, dr)
+        dr.find_element_by_id('password_name').send_keys('lizhan')
+        dr.find_element_by_id('password_pwd').send_keys('080416')
+        dr.find_element_by_id('password_submitBtn').click()
+        time.sleep(2)
+        ResponseUrl = dr.current_url
+        
+        if ResponseUrl.find('expire_term_default') >1:         
+                print('Login Num is limted')
+                #使用xpath筛选
+                ip_uint = [
+                    dr.find_element_by_xpath('.//table/tbody/tr[3]/td[2]').text,
+                    dr.find_element_by_xpath('.//table/tbody/tr[4]/td[2]').text
+                ]
+                try:
+                    WorkstationIndex = ip_uint.index('172.16.43.180')
+                    print('306工作站在线，将删除另一个用户')
+                    DelteIndex = 1 - WorkstationIndex + 3
+                    #第三个或者第四个tr
+                except ValueError:
+                    DelteIndex = 3
+                    print('删除第一个用户')
+                XpathDelte = ".//table/tbody/tr[%d]/td[7]" % (DelteIndex)
+                dr.find_element_by_xpath(XpathDelte).click()
+                # 删除后重新调用登录
+                print('重新登录')
+                time.sleep(1)
+                dr.switch_to.alert.accept()  #接受弹窗
+                SimulateClick(0, dr)
+                   
+        else:
+            print('Login Success')
     dr.quit() 
 
 if __name__ == '__main__':
-   # SimulateClick()
-   page_login()
+   SimulateClick()
+   #page_login()
