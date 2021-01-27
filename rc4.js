@@ -1,5 +1,5 @@
 function do_encrypt_rc4(src) {
-    passwd = +(new Date())+""
+    passwd = +(new Date())+'';
 	src = src+'';
     passwd = passwd + '';
     var i, j = 0, a = 0, b = 0, c = 0, temp;

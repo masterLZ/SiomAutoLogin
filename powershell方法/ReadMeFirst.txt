@@ -5,5 +5,3 @@
 
 
  windows添加计划任务参考：https://blog.csdn.net/liu050604/article/details/82590504?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param
-
-注意计划任务时：在编辑“操作”选项卡时，找到“起始于（可选）”： 填入程序所在目录，比如：E:\Tools\  

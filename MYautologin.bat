@@ -1,6 +1,8 @@
-D:
-cd D:\my-code\自动登录
+@echo off
 CHCP 65001
-echo off
+echo 连接wifi中
+echo netsh wlan connect name=SIOM
 echo 登录中
-python.exe ./python_autologin.py
+python.exe %~dp0/python_autologin.py
+
+
