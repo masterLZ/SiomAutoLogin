@@ -1,6 +1,6 @@
-CHCP 65001
 echo off
-echo 连接wifi中
-netsh wlan connect name=SIOM
-echo 登录中
-python.exe ./login-4am.py
+echo netsh wlan connect name=SIOM
+echo %~dp0
+%~d0
+cd %~dp0
+python.exe %~dp0login-4am.py

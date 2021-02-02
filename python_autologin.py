@@ -23,10 +23,10 @@ def page_login():
     }
     r = requests.post(url, data=data)
     print(r.status_code)
-    if r.status_code == 500:
-        print('链接失败')
-    else:
+    if r.status_code == 200:
         print('链接成功')
+    else:
+        print('链接失败')
 
 
 def send_mail():
@@ -38,7 +38,7 @@ def send_mail():
     sender = 'zhanli@siom.ac.cn'
     receivers = ['lizzzzz@mail.ustc.edu.cn']  # 接收邮箱
 
-    message = MIMEText('MSI网络已经重新链接', 'plain', 'utf-8')
+    message = MIMEText('306网络已经重新链接', 'plain', 'utf-8')
     message['From'] = Header("306", 'utf-8')
     message['To'] = Header("李展", 'utf-8')
 
@@ -57,12 +57,17 @@ def send_mail():
 
 
 
-def SimulateClick(isFirst=1, driver=None):
+def SimulateClick(isHide = 0,isFirst=1, driver=None):
     url = 'http://210.72.9.2/'
     dr = driver
     if (isFirst):
-        # dr = webdriver.Firefox('./')
-        dr = webdriver.Ie()
+        if isHide:
+            option = webdriver.FirefoxOptions()
+            option.add_argument('headless')
+            dr = webdriver.Firefox('./', firefox_options=option)
+        else:
+            dr = webdriver.Firefox('./')
+        #dr = webdriver.Ie()
     time.sleep(1)
     dr.get(url)
     dr.implicitly_wait(30)
@@ -97,7 +102,7 @@ def SimulateClick(isFirst=1, driver=None):
                 print('重新登录')
                 time.sleep(1)
                 dr.switch_to.alert.accept()  #接受弹窗
-                SimulateClick(0, dr)
+                SimulateClick(isHide, 0, dr)
                    
         else:
             print('Login Success')
