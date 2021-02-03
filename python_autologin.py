@@ -46,8 +46,9 @@ def send_mail():
     message['Subject'] = Header(subject, 'utf-8')
 
     try:
-        smtpObj = smtplib.SMTP()
-        smtpObj.connect(mail_host, '25')  # 25 为默认端口号
+        #smtpObj = smtplib.SMTP()
+        #smtpObj.connect(mail_host, '25')  # 25 为明文发送默认端口号
+        smtpObj = smtplib.SMTP_SSL(mail_host,994)#994 SSL加密发送
         smtpObj.login(mail_user, mail_pass)
         smtpObj.sendmail(sender, receivers, message.as_string())
         print("邮件发送成功")
